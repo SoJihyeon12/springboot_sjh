@@ -1,4 +1,11 @@
 package net.likelion.bebc25.spring.lifecycle;
+// 이 코드는 Spring Bean의 생명주기(Lifecycle) 를 설명하기 위한 예제입니다.
+//특히 Bean이 생성될 때(초기화) 와 Bean이 소멸될 때(종료) 어떤 메서드가 자동으로 실행되는지를 보여줍니다.
+//이 클래스의 역할은
+//임시 로그 파일을 생성하여 로그를 저장하고, 프로그램 종료 시 파일을 닫는 역할
+//이라고 생각하면 됩니다.
+
+//생성자에서는 filePath를 사용할 수 없고(null), @PostConstruct 이후부터는 정상적으로 사용할 수 있다는 점이 이 예제의 가장 중요한 핵심입니다.
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;

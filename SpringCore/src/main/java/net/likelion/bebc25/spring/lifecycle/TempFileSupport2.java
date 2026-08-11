@@ -1,5 +1,17 @@
 package net.likelion.bebc25.spring.lifecycle;
-
+//이 코드는 Spring Bean의 생명주기(Lifecycle) 를 인터페이스 방식으로 구현한 예제입니다.
+//이전 예제에서는
+//@PostConstruct
+//@PreDestroy
+//를 사용했지만,
+//
+//이번에는
+//InitializingBean
+//DisposableBean
+//인터페이스를 구현하여 초기화 메서드와 소멸 메서드를 정의합니다.
+//
+//즉, 이 클래스의 역할은
+//Bean이 생성될 때 파일을 열고, Bean이 종료될 때 파일을 닫는 것입니다.
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;

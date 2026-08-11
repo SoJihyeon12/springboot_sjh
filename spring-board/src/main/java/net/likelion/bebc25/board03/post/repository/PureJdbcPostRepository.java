@@ -1,4 +1,11 @@
 package net.likelion.bebc25.board03.post.repository;
+// 이 PureJdbcPostRepository는 순수 JDBC(Java Database Connectivity) 를 사용해서 데이터베이스와 직접 통신하는 Repository입니다.
+// 즉, JdbcTemplate이 내부적으로 해주는 일을 직접 하나하나 작성한 코드입니다.
+
+// PureJdbcPostRepository는 순수 JDBC API만 사용하여 MySQL과 직접 통신하는 Repository입니다.
+// Connection으로 데이터베이스에 연결하고, Statement로 SQL을 실행하며, ResultSet으로 조회 결과를 읽어 PostDto 객체로 변환합니다.
+// 이 방식은 JDBC의 동작 원리를 이해하는 데 좋지만, 코드가 길고 자원 관리와 SQL Injection 위험을 개발자가 직접 처리해야 하므로
+// 실무에서는 주로 PreparedStatement나 JdbcTemplate을 사용합니다.
 
 import jakarta.validation.Valid;
 import net.likelion.bebc25.board03.post.dto.PostDto;

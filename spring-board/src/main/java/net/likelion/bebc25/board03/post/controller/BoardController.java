@@ -1,4 +1,19 @@
 package net.likelion.bebc25.board03.post.controller;
+// 이 BoardController는 board03의 컨트롤러입니다.
+//board02와 비교했을 때 가장 큰 변화는 비즈니스 로직을 PostService로 분리했다는 점입니다.
+//즉,
+//board02 : Controller가 데이터 처리까지 담당
+//board03 : Controller는 요청만 받고, 실제 처리는 Service에게 맡김
+//이것이 Spring의 MVC(Model-View-Controller) 구조에 더 가까운 설계입니다.
+
+// board03는 다음과 같이 역할이 분리됩니다.
+// Controller → 요청을 받음
+// Service → 실제 작업 수행
+// DTO → 데이터 저장
+
+// BoardController는 사용자의 요청을 받아 필요한 데이터를 PostService에 요청하고,
+// 결과를 Model에 담아 View(Thymeleaf)로 전달하는 역할만 담당합니다.
+// 게시글 조회·등록·수정·삭제와 같은 실제 비즈니스 로직은 모두 PostService가 처리하도록 분리한 것이 board03의 가장 큰 특징입니다.
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

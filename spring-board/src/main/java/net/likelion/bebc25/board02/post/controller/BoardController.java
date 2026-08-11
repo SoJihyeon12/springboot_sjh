@@ -1,4 +1,17 @@
 package net.likelion.bebc25.board02.post.controller;
+// 이 BoardController는 이전에 설명했던 board01 버전에서 발전한 board02 버전입니다.
+// 가장 큰 차이점은 다음 5가지입니다.
+// 1. Thymeleaf 템플릿 사용 (HTML을 문자열로 만들지 않음)
+// 2. Validation(입력값 검증) 추가
+// 3. 예외 처리(GlobalExceptionHandler) 사용
+// 4. 삭제 기능 구현
+// 5. 클래스 레벨의 @RequestMapping 사용
+
+// 이 BoardController는 Spring MVC의 기본 구조를 제대로 갖춘 게시판 컨트롤러입니다.
+// 요청을 받아 데이터를 조회하거나 수정하고,
+// Model에 데이터를 담아 Thymeleaf(View) 로 전달하며,
+// 입력값은 @Valid와 BindingResult로 검증하고,
+// 발생한 예외는 GlobalExceptionHandler가 처리하는 구조로 작성되어 있습니다.
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -12,22 +25,23 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@Slf4j
-@RequestMapping("/02/board")
+@Controller // Spring MVC Controller입니다. URL 요청을 처리합니다.
+@Slf4j // 로그 출력용입니다.
+@RequestMapping("/02/board") // 이것이 board01과 가장 큰 차이입니다.
 public class BoardController {
 
-    private final List<PostDto> fakePosts;
+    private final List<PostDto> fakePosts; //게시글 저장소입니다. 현재는 DB 대신 ArrayList에 저장합니다.
 
-    public BoardController(){
-        fakePosts = new ArrayList<PostDto>();
+    public BoardController(){ // 생성자
+        fakePosts = new ArrayList<PostDto>(); // 빈 리스트 생성
 
+        // 1번 게시글 생성
         PostDto post1 = new PostDto();
         post1.setId(1);
         post1.setTitle("1번 게시글");
         post1.setContent("1번 게시글 내용입니다.");
         post1.setAuthor("하루");
-        post1.setSecret(true);
+        post1.setSecret(true); // board01에는 없던 기능입니다. 비밀글 여부를 저장합니다.
         post1.setCreatedAt(LocalDateTime.now());
 
         PostDto post2 = new PostDto();
@@ -37,6 +51,7 @@ public class BoardController {
         post2.setAuthor("나무");
         post2.setCreatedAt(LocalDateTime.now());
 
+        // 리스트에 저장
         fakePosts.add(post1);
         fakePosts.add(post2);
 
@@ -79,7 +94,7 @@ public class BoardController {
         throw new IllegalArgumentException(id + "번 게시글은 존재하지 않습니다.");
     }
 
-    // 게시글 등록 화면을 요청하는 컨트롤러
+    // 게시글 등록 화면을 요청하는 컨트롤러, 글쓰기 화면
     @GetMapping("/write.html")
     public String getWriteForm(@ModelAttribute("postForm") PostDto post){ // 모델에 자동으로 주입까지 됨(postDto 이름으로)
 //        model.addAttribute("postForm", new PostDto());

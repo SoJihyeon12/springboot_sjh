@@ -1,4 +1,9 @@
 package net.likelion.bebc25.board03.post.dto;
+// 이 PostDto는 board02의 PostDto를 더 간결하게 개선한 버전입니다.
+//가장 큰 차이점은 Lombok을 사용해서 생성자, Getter, Setter, toString() 등을 직접 작성하지 않아도 된다는 것입니다.
+
+// 이 PostDto는 게시글 하나의 데이터를 저장하는 DTO이며, Validation으로 입력값을 검증하고,
+// Lombok을 이용해 생성자·Getter·Setter·toString()을 자동 생성하며, @Builder를 통해 객체를 더 쉽고 가독성 있게 생성할 수 있도록 만든 클래스입니다.
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

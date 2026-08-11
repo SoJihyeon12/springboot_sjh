@@ -1,4 +1,13 @@
 package net.likelion.bebc25.board03.post.repository;
+// 이 MemoryPostRepository는 데이터베이스를 사용하지 않고 메모리(List)에 게시글을 저장하는 Repository입니다.
+//앞에서 설명한 JdbcTemplatePostRepository와 같은 역할을 하지만, MySQL 대신 ArrayList를 사용한다는 차이가 있습니다.
+//즉,
+//MemoryPostRepository → 메모리(List)에 저장 (프로그램 종료 시 데이터 사라짐)
+//JdbcTemplatePostRepository → 데이터베이스(MySQL)에 저장 (프로그램 종료 후에도 데이터 유지)
+
+// MemoryPostRepository는 데이터베이스 대신 ArrayList<PostDto>를 사용하여 게시글을 메모리에 저장하는 Repository입니다.
+// findAll(), findById(), save(), update(), deleteById() 메서드를 통해 게시글의 CRUD 기능을 수행하며,
+// 프로그램이 실행되는 동안에만 데이터가 유지되고 종료하면 모두 사라지는 특징이 있습니다.
 
 import net.likelion.bebc25.board03.post.dto.PostDto;
 import org.springframework.stereotype.Component;
